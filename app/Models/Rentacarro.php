@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Rentacarro extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name','barcode','price', 'image'];
+
+    public function getImageAttribute($image)
+    {
+
+        if ($image && file_exists('storage/' . $image))
+            return $image;
+        else
+            return 'rentacarros/noimage.png';
+    }
+}
